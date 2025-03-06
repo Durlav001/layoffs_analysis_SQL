@@ -27,6 +27,14 @@ The analysis is based on a layoffs dataset containing the following fields:
 - Standardized text formats for consistency (e.g., industry names, locations).
 - Used **CTEs** to simplify complex queries and improve readability.
 
+#### a) Removing Duplicates
+The first step is to identify and remove any duplicate rows to ensure that the dataset is clean and consistent. Since the dataset doesn't have a unique identifier, I used a `CTE` with the `ROW_NUMBER()` window function to flag and remove duplicates.
+
+```sql
+-- Creating a duplicate table to preserve the original data
+CREATE TABLE layoffs_dup
+SELECT * FROM layoffs;
+
 ### Exploratory Data Analysis (EDA):
 
 1. **Understanding Layoff Severity:**
