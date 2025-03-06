@@ -21,61 +21,6 @@ The analysis is based on a layoffs dataset containing the following fields:
 
 ## SQL Techniques Used
 
-### Data Cleaning:
-
-- Removed duplicates and null values to ensure data integrity.
-- Standardized text formats for consistency (e.g., industry names, locations).
-- Used **CTEs** to simplify complex queries and improve readability.
-
-#### a) Removing Duplicates
-The first step is to identify and remove any duplicate rows to ensure that the dataset is clean and consistent. Since the dataset doesn't have a unique identifier, I used a `CTE` with the `ROW_NUMBER()` window function to flag and remove duplicates.
-
-```sql
--- Creating a duplicate table to preserve the original data
-CREATE TABLE layoffs_dup
-SELECT * FROM layoffs;
-
--- Inserting the original data into the duplicate table
-INSERT INTO layoffs_dup
-SELECT * FROM layoffs;
-
--- Finding duplicate rows using the ROW_NUMBER() function
-WITH cte_dup AS (
-    SELECT *,
-    ROW_NUMBER() OVER (
-        PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions
-    ) AS row_num
-    FROM layoffs_dup
-)
-SELECT * FROM cte_dup
-WHERE row_num > 1;
-
--- Creating a new table to store row numbers
-CREATE TABLE `layoffs_dup2` (
-  `company` text,
-  `location` text,
-  `industry` text,
-  `total_laid_off` INT DEFAULT NULL,
-  `percentage_laid_off` text,
-  `date` text,
-  `stage` text,
-  `country` text,
-  `funds_raised_millions` INT DEFAULT NULL,
-  `row_num` INT
-);
-
--- Inserting row numbers into the new table
-INSERT INTO layoffs_dup2
-SELECT *,
-ROW_NUMBER() OVER (
-    PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions
-) AS row_num
-FROM layoffs_dup;
-
--- Deleting rows with row_num greater than 1 (duplicates)
-DELETE FROM layoffs_dup2
-WHERE row_num > 1;
-### Exploratory Data Analysis (EDA):
 
 1. **Understanding Layoff Severity:**
 
