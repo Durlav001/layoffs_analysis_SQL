@@ -22,12 +22,17 @@ The analysis is based on a layoffs dataset containing the following fields:
 ## SQL Techniques Used for cleaning data
 The following steps are implemented in the SQL process:
 
-### 1. **Create a Duplicate of the Layoffs Table**
+### 1. **Finding and deleting duplicates using CTE and Window Function**
    A duplicate of the `layoffs` table is created to work with in isolation while preserving the original dataset.
    ```sql
    CREATE TABLE layoffs_dup AS
    SELECT * FROM layoffs;
   ```
+Insert all data from layoffs table into the duplicate table
+```sql
+INSERT INTO layoffs_dup
+SELECT * FROM layoffs;
+```
   
 
 
