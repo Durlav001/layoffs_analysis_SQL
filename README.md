@@ -25,15 +25,14 @@ The analysis is based on a layoffs dataset containing the following fields:
      - Finding and Dealing with Duplicates
 
        ```sql
-       -- Creating a duplicate table to preserve the original data
 CREATE TABLE layoffs_dup AS
 SELECT * FROM layoffs;
 
--- Inserting the values from the original table
+
 INSERT INTO layoffs_dup
 SELECT * FROM layoffs;
 
--- Adding a row number to identify duplicates
+
 WITH cte_dup AS (
     SELECT *,
     ROW_NUMBER() OVER(
@@ -42,11 +41,11 @@ WITH cte_dup AS (
     FROM layoffs_dup
 )
 
--- Checking for duplicates
+
 SELECT * FROM cte_dup
 WHERE row_num > 1;
 
--- Creating a new table with a row_num column to handle duplicates
+
 CREATE TABLE `layoffs_dup2` (
   `company` TEXT,
   `location` TEXT,
@@ -60,7 +59,7 @@ CREATE TABLE `layoffs_dup2` (
   `row_num` INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Inserting data with row numbers
+
 INSERT INTO layoffs_dup2
 SELECT *,
 ROW_NUMBER() OVER(
@@ -68,7 +67,7 @@ ROW_NUMBER() OVER(
 ) AS row_num
 FROM layoffs_dup;
 
--- Deleting duplicate rows
+
 DELETE FROM layoffs_dup2
 WHERE row_num > 1; 
 
