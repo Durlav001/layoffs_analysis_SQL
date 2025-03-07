@@ -20,56 +20,15 @@ The analysis is based on a layoffs dataset containing the following fields:
 - **Funds Raised (in millions)** – Total funds raised by the company
 
 ## SQL Techniques Used for cleaning data
+The following steps are implemented in the SQL process:
 
-1. **Data Cleaning.**
-     - Finding and Dealing with Duplicates
+### 1. **Create a Duplicate of the Layoffs Table**
+   A duplicate of the `layoffs` table is created to work with in isolation while preserving the original dataset.
+   ```sql
+   CREATE TABLE layoffs_dup AS
+   SELECT * FROM layoffs;
 
-       ```sql
-CREATE TABLE layoffs_dup AS
-SELECT * FROM layoffs;
-
-
-INSERT INTO layoffs_dup
-SELECT * FROM layoffs;
-
-
-WITH cte_dup AS (
-    SELECT *,
-    ROW_NUMBER() OVER(
-        PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions
-    ) AS row_num
-    FROM layoffs_dup
-)
-
-
-SELECT * FROM cte_dup
-WHERE row_num > 1;
-
-
-CREATE TABLE `layoffs_dup2` (
-  `company` TEXT,
-  `location` TEXT,
-  `industry` TEXT,
-  `total_laid_off` INT DEFAULT NULL,
-  `percentage_laid_off` TEXT,
-  `date` TEXT,
-  `stage` TEXT,
-  `country` TEXT,
-  `funds_raised_millions` INT DEFAULT NULL,
-  `row_num` INT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-INSERT INTO layoffs_dup2
-SELECT *,
-ROW_NUMBER() OVER(
-    PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions
-) AS row_num
-FROM layoffs_dup;
-
-
-DELETE FROM layoffs_dup2
-WHERE row_num > 1; 
+  
 
 
 1. **Understanding Layoff Severity:**
