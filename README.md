@@ -27,7 +27,7 @@ The following steps are implemented in the SQL process:
    ```sql
    CREATE TABLE layoffs_dup AS
    SELECT * FROM layoffs;
-
+  ```
   
 
 
