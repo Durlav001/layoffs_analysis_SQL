@@ -306,11 +306,6 @@ drop column row_num;
 - Layoff trends correlate with **funding downturns** and global economic shifts.
 - **Certain countries and industries** faced a disproportionate impact.
 
-## Future Enhancements
-
-- **Connect SQL database to Tableau** for interactive visualizations.
-- Automate data updates for real-time tracking.
-- Expand analysis to include external economic indicators.
 
 ## How to Use
 
@@ -324,13 +319,7 @@ drop column row_num;
 ## Tool Used
 
 - **SQL  (SQL Server)**
-- 
-
-## Contact
-
-If you have any questions or suggestions, feel free to connect with me on **GitHub** or **LinkedIn**.
-
----
+  
 
 This project is part of my data analysis portfolio, showcasing my SQL expertise in handling real-world datasets.
 
