@@ -3,7 +3,7 @@
 
 
 ## 🖼️ Dashboard Preview  
-![ Dashboard 1](Dashboard1.png)
+![ Dashboard 1](Dashboard 1.png)
 
 ## Overview
 
