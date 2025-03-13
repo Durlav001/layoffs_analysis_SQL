@@ -1,6 +1,10 @@
 
 # Layoffs Analysis using SQL
 
+
+## 🖼️ Dashboard Preview  
+![ Dashboard 1](Dashboard1.png)
+
 ## Overview
 
 This project explores global layoffs data using SQL, focusing on data cleaning and exploratory data analysis (EDA). By leveraging **Common Table Expressions (CTEs)** and **window functions**, I analyzed trends in layoffs across industries, companies, and countries. The insights derived can help understand patterns in workforce reductions over time.
