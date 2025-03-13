@@ -2,8 +2,9 @@
 # Layoffs Analysis using SQL
 
 
-## 🖼️ Dashboard Preview  
-![[ Dashboard 1](https://github.com/Durlav001/layoffs_analysis_SQL/blob/main/Dashboard%201.png)](Dashboard 1.png)
+## 🖼️ Dashboard Preview
+
+![Dashboard Preview](https://github.com/Durlav001/layoffs_analysis_SQL/blob/main/Dashboard%201.png)
 
 ## Overview
 
